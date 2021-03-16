@@ -1,4 +1,4 @@
-# Azure Tagging Policies
+# Azure Bicep - Tagging Policies
 
 Azure Bicep modules for creating policies to enforce minimum set of tagging governance.
 
