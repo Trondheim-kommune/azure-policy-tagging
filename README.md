@@ -7,6 +7,9 @@ Azure Bicep modules for creating policies to enforce minimum set of tagging gove
 3. inherittags.bicep inherit tags on all supported resources in a RG, from the RG, if it isn't already present on the resource. 
 
 ## Example usage:
+
+Bicep does not yet allow consuming external modules; in [backlog for v0.4](https://github.com/Azure/bicep/issues/660).
+
 ```bicep
 var reqTagNames = [ 
   'requiredTag1'
@@ -29,21 +32,21 @@ var addReplaceTags = [
   }
 ]
 
-module reqTagNamesOnRG 'modules/reqtagnames.bicep' = {
+module reqTagNamesOnRG 'reqtagnames.bicep' = {
   name: 'reqTagNamesOnRG'
   params: { 
     tagNames: reqTagNames 
   }
 }
 
-module inheritTagNamesFromRG 'modules/inherittags.bicep' = {
+module inheritTagNamesFromRG 'inherittags.bicep' = {
   name: 'inheritTagNamesFromRG'
   params: {
     tagNames: inheritTagNames
   }
 }
 
-module addReplaceTagsOnRG 'modules/addreplacetags.bicep' = {
+module addReplaceTagsOnRG 'addreplacetags.bicep' = {
   name: 'addReplaceTagsOnRG'
   params: {
     tags: addReplaceTags
