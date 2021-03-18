@@ -27,7 +27,7 @@ resource addReplaceTagsOnRG_policyAssignments 'Microsoft.Authorization/policyAss
 }]
 
 resource addReplaceTagsOnRG_roleAssignments 'Microsoft.Authorization/roleAssignments@2020-04-01-preview' = [for i in range(0, length(tags)): {
-  name: guid('contributor ${addReplaceTagsOnRG_policyAssignments[i].name}', addReplaceTagsOnRG_policyAssignments[i].identity.principalId, subscription().subscriptionId)
+  name: guid('contributor ${addReplaceTagsOnRG_policyAssignments[i].name}', subscription().subscriptionId)
   properties: { 
     roleDefinitionId: contrib_roleDef.id
     principalId: addReplaceTagsOnRG_policyAssignments[i].identity.principalId

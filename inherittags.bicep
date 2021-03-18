@@ -24,7 +24,7 @@ resource inheritTagsFromRG_policyAssignments 'Microsoft.Authorization/policyAssi
 }]
 
 resource inheritTagsFromRG_roleAssignments 'Microsoft.Authorization/roleAssignments@2020-04-01-preview' = [for i in range(0, length(tagNames)): {
-  name: guid('contributor ${inheritTagsFromRG_policyAssignments[i].name}', inheritTagsFromRG_policyAssignments[i].identity.principalId, subscription().subscriptionId)
+  name: guid('contributor ${inheritTagsFromRG_policyAssignments[i].name}', subscription().subscriptionId)
   properties: {
     roleDefinitionId: contrib_roleDef.id
     principalId: inheritTagsFromRG_policyAssignments[i].identity.principalId
